@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="error" class="container mt-3">
+    <h2>Error</h2>
+    {% if message %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    <a href="{{ url_for('login') }}">Login</a>
+</div>
+{% endblock %}
+

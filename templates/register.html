@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="register" class="container mt-3">
+    <h2>Register</h2>
+    {% if message %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    <form action="{{ url_for('register') }}" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password">
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('password')">
+                    <img src="{{ url_for('static', filename='show.png') }}" alt="Show" width="20">
+                </button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('confirm_password')">
+                    <img src="{{ url_for('static', filename='show.png') }}" alt="Show" width="20">
+                </button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-control" id="role" name="role" onchange="toggleAdminCode()">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+        <div class="mb-3" id="admin-code-div" style="display: none;">
+            <label for="admin_code" class="form-label">Admin Code</label>
+            <input type="text" class="form-control" id="admin_code" name="admin_code">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+<script>
+function toggleAdminCode() {
+    const roleSelect = document.getElementById("role");
+    const adminCodeDiv = document.getElementById("admin-code-div");
+    adminCodeDiv.style.display = roleSelect.value === "Admin" ? "block" : "none";
+}
+
+function togglePasswordVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+</script>
+{% endblock %}
+

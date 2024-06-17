@@ -1,0 +1,104 @@
+.bg-dark-blue {
+    background-color: #0202b1 !important; /* Dark blue color */
+}
+
+
+.post-content {
+    font-size: 1.4em; /* Adjust font size as needed */
+    max-width: 900px; /* Set a slightly smaller max-width */
+    margin: 0 auto; /* Center the posts container */
+    padding: 10px; /* Add some padding for better readability */
+    background-color: #ffffff; /* Optional: Add a background color to make posts stand out */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+.post-content {
+    margin-top: 50px; /* Add margin to the top */
+}
+.post {
+    padding: 20px; /* Add padding to create space around the post content */
+    background-color: #da1313; /* Add a background color to the posts */
+    border-radius: 10px; /* Add rounded corners for a softer look */
+    box-shadow: 0 0 10px rgba(93, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    margin-bottom: 20px; /* Add margin to separate posts */
+}
+
+.post h2 {
+    font-size: 1.5rem; /* Increase heading size for emphasis */
+    margin-bottom: 10px; /* Add space below headings */
+    color: #ff0000; /* Set heading color */
+}
+
+.post p {
+    line-height: 1.6; /* Increase line height for better readability */
+    margin-bottom: 15px; /* Add space between paragraphs */
+}
+
+.post a {
+    color: #000000; /* Set link color */
+}
+
+.post a:hover {
+    color: #000000; /* Set link color on hover */
+    text-decoration: underline; /* Underline links on hover */
+}
+.post-content {
+    background-color: #ffffff; /* Add your desired background color here */
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 16px;
+    width: 450px;
+}
+
+.search-button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    height:50px;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+
+.notification-action {
+    color: #555;
+}
+
+.notification-comment {
+    color: #777;
+    margin-top: 5px;
+}
+
+.mark-as-read-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mark-as-read-button:hover {
+    background-color: #0056b3;
+}

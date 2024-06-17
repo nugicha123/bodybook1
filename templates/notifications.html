@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<h1>Notifications</h1>
+<ul>
+    {% for notification in notifications %}
+        <li>
+            <span class="notification-action">
+                {% if notification.action == 'like' %}
+                    {{ notification.user.username }} liked your post.
+                {% elif notification.action == 'dislike' %}
+                    {{ notification.user.username }} disliked your post.
+                {% elif notification.action == 'comment' %}
+                    {{ notification.user.username }} commented on your post:
+                    <span class="notification-comment">"{{ notification.comment_content }}"</span>
+                {% endif %}
+            </span>
+            <form action="{{ url_for('mark_notification_as_read', notification_id=notification.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="mark-as-read-button">Mark as Read</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('posts') }}">Back to posts</a>
+{% endblock %}
+
+

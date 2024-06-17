@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Chat</h2>
+    {% for message in messages %}
+    <div class="card mb-3 message-card {% if session['user']['id'] == message.user_id %}message-card-user{% else %}message-card-other{% endif %}">
+        <div class="card-body color">
+            <div class="d-flex align-items-center mb-2">
+                <img src="{{ url_for('static', filename='uploads/' + (message.user.profile_picture or 'pfp.png')) }}" alt="Profile Picture" class="rounded-circle me-2" height="50" width="50">
+                <a href="{{ url_for('view_profile', user_id=message.user_id) }}" class="mb-0">{{ message.user.username }}</a>
+            </div>
+            <p class="message-content">{{ message.content }}</p>
+
+            <!-- Delete button (only for message owners or admins) -->
+            {% if 'user' in session and (session['user']['id'] == message.user_id or session['user']['is_admin']) %}
+            <form action="{{ url_for('delete_message', message_id=message.id) }}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger delete-button">
+                    <img src="{{ url_for('static', filename='delete.png') }}" alt="Delete" style="width: 20px; height: 20px; margin-right: 5px;">
+                    Delete
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if 'user' in session %}
+    <div class="fixed-bottom p-3 bg-light border-top">
+        <form action="{{ url_for('chat') }}" method="post" class="d-flex">
+            <textarea name="content" class="form-control me-2 message-input" id="messageContent" rows="1" placeholder="Type a message..." required></textarea>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    /* Ensure the chat input does not overlap with other content */
+    .container.mt-3 {
+        margin-bottom: 10px; /* Adjust based on your footer height */
+    }
+
+    /* Adjust the textarea to expand when typing */
+    textarea {
+        resize: none;
+        overflow: hidden;
+    }
+
+    /* Keep the send button and textarea in line */
+    .d-flex {
+        align-items: center;
+    }
+
+    .fixed-bottom {
+        z-index: 1030; /* Make sure it stays above other content */
+        background-color: #f8f9fa; /* Adjust background color */
+    }
+
+    /* Custom styling for the message input to match chat message appearance */
+    .message-input {
+        border: 1px solid #a7aeb5; /* Match border color with card */
+        border-radius: 20px; /* Rounded corners */
+        padding: 10px 15px; /* Padding for comfortable typing */
+        font-size: 1rem; /* Font size to match messages */
+        background-color: #e9ecef; /* Slightly different background color for distinction */
+    }
+
+    .message-input:focus {
+        outline: none; /* Remove default focus outline */
+        box-shadow: 0 0 5px rgba(0,123,255,.25); /* Custom focus outline */
+    }
+
+    /* Custom styling for the message cards */
+    .message-card {
+        border-radius: 20px; /* Rounded corners */
+        padding: 15px; /* Padding inside the card */
+        border: none; /* Remove border */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Light shadow for depth */
+    }
+
+    .message-card-user {
+        background-color: #cfe2ff; /* Light blue for current user */
+    }
+
+    .message-card-other {
+        background-color: #f0f0f0; /* Light grey for other users */
+    }
+
+    .message-content {
+        font-size: 1rem; /* Match font size with input */
+        margin: 0; /* Remove default margin */
+    }
+
+    /* Custom styling for the delete button */
+    .delete-button {
+        border: none; /* Remove default border */
+        background: none; /* Remove default background */
+        color: #dc3545; /* Text color for delete */
+        padding: 0; /* Remove default padding */
+        cursor: pointer; /* Pointer cursor */
+    }
+
+    .delete-button img {
+        vertical-align: middle; /* Align image with text */
+    }
+
+    .color {
+        background-color: #ffffff; /* Background color for card body */
+        border-radius: 15px; /* Rounded corners for card body */
+    }
+</style>
+
+<script>
+    // Auto-expand the textarea as the user types
+    const messageContent = document.getElementById('messageContent');
+    messageContent.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+</script>
+{% endblock %}
+
+
+

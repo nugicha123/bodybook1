@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="contact-us">
+    <h1>Contact Us</h1>
+    <p>We would love to hear from you! Please reach out to us through any of the following channels:</p>
+    <ul class="contact-list">
+        <li class="contact-item">
+            <img src="{{ url_for('static', filename='ig.png') }}" alt="Instagram" class="contact-icon" style="width: 40px; height: 40px;">
+            <a href="https://www.instagram.com" target="_blank" class="contact-link">Instagram</a>
+        </li>
+        <li class="contact-item">
+            <img src="{{ url_for('static', filename='fb.png') }}" alt="Facebook" class="contact-icon" style="width: 40px; height: 40px;">
+            <a href="https://www.facebook.com" target="_blank" class="contact-link">Facebook</a>
+        </li>
+        <li class="contact-item">
+            <img src="{{ url_for('static', filename='phone.png') }}" alt="Phone" class="contact-icon" style="width: 40px; height: 40px;">
+            <span class="contact-detail">+123-456-7890</span>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+<style>
+.contact-us {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+.contact-us p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.contact-link {
+    font-size: 1.2em;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: #0056b3;
+}
+
+.contact-detail {
+    font-size: 1.2em;
+    color: #333;
+}
+</style>

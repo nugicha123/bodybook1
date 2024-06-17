@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chat with {{ receiver.username }}{% endblock %}
+
+{% block content %}
+<h1>Chat with {{ receiver.username }}</h1>
+<div class="messages">
+    {% for message in messages %}
+        <div class="{{ 'message-sent' if message.sender_id == session['user']['id'] else 'message-received' }}">
+            <p>{{ message.content }}</p>
+            <small>{{ message.timestamp }}</small>
+        </div>
+    {% endfor %}
+</div>
+<form method="POST" action="{{ url_for('direct_message', receiver_id=receiver.id) }}">
+    <textarea name="content" placeholder="Type your message" required></textarea>
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
